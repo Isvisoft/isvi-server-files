@@ -46,4 +46,10 @@ app.post('/', upload.single('file'), (req, res, next) => {
 
 })
 
+app.get('/', (req, res, next) => {
+
+    res.send({ ok: true })
+
+})
+
 module.exports = app;

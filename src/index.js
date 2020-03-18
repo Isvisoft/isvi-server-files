@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 25478;
+const fs = require('fs');
 
 // cors conf
 const cors = require('cors')({ origin: true });
@@ -17,6 +18,11 @@ app.use("/uploads", express.static(__dirname + '/../uploads')); //Serves resourc
 
 const uploadRoutes = require('./upload.route');
 app.use('/', uploadRoutes);
+
+
+if (!fs.existsSync('uploads')) {
+    fs.mkdirSync('uploads');
+}
 
 // start 
 app.listen(port, function () {
